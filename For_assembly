@@ -1,0 +1,38 @@
+
+; You may customize this and other start-up templates; 
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+org 100h 
+
+
+    
+mov ch, 0 
+
+mov ah, 1    
+int 21h
+
+mov bl, al
+sub bl,48
+mov DX, OFFSET msg    
+mov ah,9H 
+jmp a 
+
+b:
+ mov dx, offset msg2
+ mov ah,9h
+
+ jmp a   
+
+a: 
+ add ch,1
+ int 21h 
+ cmp ch,bl
+ je c
+ jne b
+     
+c:
+ ret
+msg2 DB "Text2 $"
+
+        
+msg DB "Text1 $"
